@@ -1,11 +1,43 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+const db = require("./config/keys").mongoURI;
+const users = require("./routes/api/users");
+const reminders = require("./routes/api/reminders");
+const User = require("./models/User")
+const bodyParser = require("body-parser");
+const passport = require('passport');
+
+app.use(passport.initialize());
+
+require('./config/passport')(passport);
+
+mongoose
+.connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.log(err));
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+
+
+app.use(bodyParser.json())
 
 
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//     const user = new User({
+//         username: "Bob",
+//         number: "8001234567",
+//         password: "bobjohnson12"
+//     })
+//     user.save();
+//     res.send("Hello World!");
+// });
+
+app.use("/api/users", users);
+app.use("/api/reminders", reminders);
 
 
 const port = process.env.PORT || 5000;
