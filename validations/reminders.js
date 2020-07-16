@@ -5,7 +5,7 @@ module.exports = function validateReminder(data){
     let errors = {};
 
     data.description = validText(data.description) ? data.description : '';
-
+    
     if(!Validator.isLength(data.description, {min: 5, max: 80})){
         errors.description = 'Reminder description must be between 5 and 80 characters in length'
     }
