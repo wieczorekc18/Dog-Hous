@@ -1,0 +1,75 @@
+.splashTitle{
+  color: rgb(238, 67, 37);
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 400%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: 10px solid black;
+  box-shadow: 10px blue;
+}
+
+.reminderBox{
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.subscribeText{
+    border: 2px solid blue;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    font-family: sans-serif;
+    background-color: blue;
+    color: white;
+}
+
+.loginText{
+    border: 2px solid blue;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    font-family: sans-serif;
+}
+
+.splash{
+  display: flex;
+  height: 88vh;
+  /* border-bottom: solid black; */
+}
+
+.splash-left{
+  background-image: url("splashHous.jpg");
+  height: 100%;
+  width: 65%; 
+}
+
+.splash-right{
+  padding-top: 5%;
+  background-color: rgb(236, 247, 250);
+}
+
+.subscribeLink{
+}
+
+.splash-descriptors{
+  margin: 5%;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.footer{
+  padding-top: 1%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Copyright{
+  padding-top: 1%;
+  margin-left: 40%;
+}
+
+.splash-logo{
+  width: 15%;
+  height: 13%;
+  padding-left: 5%;
+}

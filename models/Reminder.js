@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Multiple reminders are made for each person 
+
 const ReminderSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,

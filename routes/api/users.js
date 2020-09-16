@@ -20,6 +20,7 @@ router.get("/test", (req, res) => {
 //         res.json('It worked: Username is: ' + req.user.username);
 //     }
 // )
+
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json({
         id: req.user.id,
@@ -60,6 +61,22 @@ router.post("/register", (req, res) => {
 
     })
 });
+
+/*
+
+.then(user => {
+    const payload = { id: user.id, username: user.username, number: user.number };
+
+    jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+        res.json({
+            success: true,
+            token: "Bearer " + token
+        });
+    });
+})
+
+*/
+
 
 router.post('/login', (req, res) => {
     const {errors, isValid } = validateLoginInput(req.body);

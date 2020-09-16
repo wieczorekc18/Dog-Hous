@@ -39,11 +39,15 @@ export const clearErrors = () => {
 };
 
 export const signup = (user) => (dispatch) => {
+  debugger
   return AuthUtil.signup(user)
     .then(() => dispatch(receiveUserSignIn()),
     (err) => dispatch(receiveErrors(err.response.data))
   );
 };
+
+
+// need this jwt action for signup as well
 
 export const login = user => dispatch => (
     AuthUtil.login(user).then(res => {

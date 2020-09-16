@@ -1,6 +1,13 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../actions/session_actions";
+import { withRouter } from "react-router";
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.session.isAuthenticated,
+});
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -16,12 +23,14 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
+      debugger
     if (this.props.loggedIn) {
       return (
         <div>
-          <Link to={"/reminders"}>All Reminders</Link>
           <Link to={"/profile"}>Profile</Link>
-          <Link to={"/new_reminder"}>Make a Reminder</Link>
+          <br/>
+          <Link to={"/reminders/new"}>Make a Reminder</Link>
+          <br/>
           <button onClick={this.logoutUser}>Logout</button>
         </div>
       );
@@ -45,4 +54,5 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+// export default NavBar;
+export default withRouter(connect(mapStateToProps, { logout })(NavBar))

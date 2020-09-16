@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const signup = (userData) => {
+    debugger
     return axios.post('/api/users/register', userData);
 }
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const validateReminder = require("../../validations/reminders");
 const Reminder = require("../../models/Reminder");
+const jwt = require("jsonwebtoken");
 
 
 router.get("/test", (req, res) => {
@@ -15,17 +16,28 @@ router.get("/test", (req, res) => {
 //     .catch(err => res.status(400).json(err))
 // })
 
-router.get("/user/:user_id", (req, res) => {
+router.get("/user/:user_id", passport.authenticate('jwt', { session: false }), (req, res) => {
   Reminder.find({ user: req.params.user_id }).sort({ timestamp: -1 })
     .then(reminders => res.json(reminders))
     .catch(err => res.status(400).json(err))
 })
 
-router.get("/:id", (req, res) => {
+router.get("/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
   Reminder.findById(req.params.id)
     .then(reminder => res.json(reminder))
     .catch(err => res.status(400).json(err))
 })
+
+
+
+//check for bugs
+router.delete("/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
+  Reminder.findById(req.params.id)
+    .then((reminder) => reminder.remove())
+    .catch((err) => res.status(400).json(err));
+});
+
+
 
 router.post("/", 
   passport.authenticate("jwt", {session: false}), 
@@ -43,5 +55,18 @@ router.post("/",
 
   newReminder.save().then(reminder => res.json(reminder));
 })
+
+//patch method needed
+
+
+// router.patch("/:id", (req, res) => {
+//   Reminder.findById(req.params.id)
+//     .then((reminder) => {
+//       return 
+//     })
+//     .catch((err) => res.status(400).json(err));
+// });
+
+
 
 module.exports = router;
