@@ -8,6 +8,11 @@ const passport = require("passport");
 const validateRegisterInput = require('../../validations/register');
 const validateLoginInput = require('../../validations/login');
 
+// require("dotenv").config();
+
+let messagebird = require("messagebird")(keys.MESSAGEBIRD_API_KEY);
+
+
 router.get("/test", (req, res) => {
     res.json({ msg: "This is the user route"});
 });
@@ -25,47 +30,103 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     res.json({
         id: req.user.id,
         username: req.user.username,
+        name: req.user.name,
         number: req.user.number
     });
 })
 
+// router.post("/register", (req, res) => {
+//     const { errors, isValid } = validateRegisterInput(req.body)
+
+//     if(!isValid){
+//         return res.status(400).json(errors);
+//     }
+
+//     User.findOne({ username: req.body.username })
+//     .then(user => {
+//         if(user){
+//             return res.status(400).json({ username: "username already exists"})
+//         }else{
+//             const newUser = new User({
+//                 username: req.body.username,
+//                 name: req.body.name,
+//                 number: req.body.number,
+//                 password: req.body.password
+//             })
+
+
+//             bcrypt.genSalt(10, (err, salt) => {
+//                 bcrypt.hash(newUser.password, salt, (err, hash) => {
+//                     if(err) throw err;
+//                     newUser.password = hash;
+//                     newUser.save()
+//                         .then((user) => res.json(user))
+//                         .catch(err => console.log(err))
+//                 })
+//             })
+//         }
+
+//     })
+// });
+
 router.post("/register", (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body)
+    console.log("Trying to signup");
+  const { errors, isValid } = validateRegisterInput(req.body);
 
-    if(!isValid){
-        return res.status(400).json(errors);
-    }
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
-    User.findOne({ username: req.body.username })
-    .then(user => {
-        if(user){
-            return res.status(400).json({ username: "username already exists"})
-        }else{
+  User.findOne({ username: req.body.username }).then((user) => {
+    if (user) {
+      return res.status(400).json({ username: "username already exists" });
+    } else {
+      messagebird.lookup.read(
+        req.body.number,
+        process.env.COUNTRY_CODE,
+        function (err, response) {
+          if (err && err.errors[0].code == 21) {
+            return res.status(400).json({ username: "Number is not valid" });
+          } else if (err) {
+            return res
+              .status(400)
+              .json({
+                username:
+                  "Something went wrong when checking your phone number",
+              });
+          } else if (response.type != "mobile") {
+            return res
+              .status(400)
+              .json({ username: "Number is not a mobile phone" });
+          } else {
             const newUser = new User({
-                username: req.body.username,
-                number: req.body.number,
-                password: req.body.password
-            })
-
+              username: req.body.username,
+              name: req.body.name,
+              number: req.body.number,
+              password: req.body.password,
+            });
 
             bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if(err) throw err;
-                    newUser.password = hash;
-                    newUser.save()
-                        .then((user) => res.json(user))
-                        .catch(err => console.log(err))
-                })
-            })
+              bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser
+                  .save()
+                  .then((user) => res.json(user))
+                  .catch((err) => console.log(err));
+              });
+            });
+          }
         }
-
-    })
+      );
+    }
+  });
 });
 
 /*
 
 .then(user => {
-    const payload = { id: user.id, username: user.username, number: user.number };
+    const payload = { id: user.id, username: user.username, name: user.name, number: user.number };
 
     jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
         res.json({
@@ -80,13 +141,14 @@ router.post("/register", (req, res) => {
 
 router.post('/login', (req, res) => {
     const {errors, isValid } = validateLoginInput(req.body);
+    console.log("Trying to login")
 
     if(!isValid){
         return res.status(400).json(errors);
     }
 
     const username = req.body.username;
-    const number = req.body.number;
+    // const number = req.body.number;
     const password = req.body.password;
 
     User.findOne({ username })
@@ -103,6 +165,7 @@ router.post('/login', (req, res) => {
                         const payload = {
                             id: user.id,
                             username: user.username,
+                            name: user.name,
                             number: user.number,
                         }
                         jwt.sign(

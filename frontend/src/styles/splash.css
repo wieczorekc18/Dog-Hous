@@ -8,27 +8,31 @@
   box-shadow: 10px blue;
 }
 
-.reminderBox{
-    border: 2px solid black;
-    margin: 5px;
-}
 
 .subscribeText{
-    border: 2px solid blue;
+    border: 2px solid rgb(255, 155, 36);
     margin: 5px;
     padding: 10px;
     border-radius: 20px;
     font-family: sans-serif;
-    background-color: blue;
+    background-color: rgb(255, 155, 36);
     color: white;
 }
 
+.subscribeText:hover{
+  border: 2px solid rgb(46, 26, 2);
+}
+
 .loginText{
-    border: 2px solid blue;
+    border: 2px solid rgb(255, 155, 36);
     margin: 5px;
     padding: 10px;
     border-radius: 20px;
     font-family: sans-serif;
+}
+
+.loginText:hover{
+  border: 2px solid rgb(46, 26, 2);
 }
 
 .splash{
@@ -45,7 +49,7 @@
 
 .splash-right{
   padding-top: 5%;
-  background-color: rgb(236, 247, 250);
+  background-color: rgb(250, 239, 215);
 }
 
 .subscribeLink{
@@ -73,3 +77,4 @@
   height: 13%;
   padding-left: 5%;
 }
+

@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import logo from "../splash/DHlogo.jpg";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -47,6 +48,7 @@ class LoginForm extends React.Component {
   }
 
   // Render the session errors if there are any
+  // style this
   renderErrors() {
     return (
       <ul>
@@ -59,10 +61,13 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-container">
+        <img className="login-logo" src={logo} alt="asdf" />
+        <h2 className="login-page-header">Log In to Dog-Hous</h2>
         <form onSubmit={this.handleSubmit}>
           <div>
             <input
+              className="login-username-field"
               type="text"
               value={this.state.username}
               onChange={this.update("username")}
@@ -70,13 +75,18 @@ class LoginForm extends React.Component {
             />
             <br />
             <input
+              className="login-password-field"
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
               placeholder="Password"
             />
             <br />
-            <input type="submit" value="Submit" />
+            <input
+              className="login-submit-button"
+              type="submit"
+              value="Submit"
+            />
             {this.renderErrors()}
           </div>
         </form>

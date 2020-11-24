@@ -1,0 +1,32 @@
+.signup-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-username-field{
+    height: 8vh;
+    width: 40vw;
+    background-color: rgb(222, 224, 224);
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+
+.signup-username-field:focus {
+    border: 2px solid rgb(247, 155, 36);
+    border-radius: 4px;
+}
+
+.signup-header{
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: larger;
+    margin-top: 5%
+}

@@ -37,11 +37,10 @@ class ShowReminder extends React.Component {
         return (
           <div>
             <h3>
-              You asked to be reminded with the following message:{" "}
-              {reminder.description}
+              You made this reminder because {reminder.recipientName} your {reminder.relationship} has a {reminder.occasion} coming up
             </h3>
             <h4>On the Date: {reminder.date}</h4>
-            <Link to="/">Back to Home</Link>
+            <Link to="/">Back to Home </Link>
             {/* <button onClick={() => this.props.destroyReminder(id).then(this.props.history.push("/"))}>Delete</button> */}
             <button onClick={() => this.handleDestroy(id)}>Delete</button>
 

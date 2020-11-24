@@ -6,6 +6,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: true
+    },
     number: {
         type: String, // Is this best option for phone numbers??
         required: true

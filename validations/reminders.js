@@ -4,14 +4,24 @@ const validText = require('./valid-text');
 module.exports = function validateReminder(data){
     let errors = {};
 
-    data.description = validText(data.description) ? data.description : '';
+    data.recipient = validText(data.recipient) ? data.recipient : '';
+    data.occaion = validText(data.occasion) ? data.occaion : '';
+
     
-    if(!Validator.isLength(data.description, {min: 5, max: 80})){
-        errors.description = 'Reminder description must be between 5 and 80 characters in length'
+    if(!Validator.isLength(data.occasion, {min: 5, max: 30})){
+        errors.occasion = 'The Occasion must be between 5 and 30 characters in length'
     }
 
-    if(Validator.isEmpty(data.description)) {
-        errors.description = 'Reminder must have a description'
+    if (Validator.isEmpty(data.recipientName)) {
+        errors.recipientName = 'Reminder must be for a named recipient'
+    }
+
+    if (Validator.isEmpty(data.relationship)) {
+        errors.relationship = 'Reminder must list recipients relationship to the user'
+    }
+
+    if(Validator.isEmpty(data.occasion)) {
+        errors.occasion = 'Reminder must have an occasion associated with it'
     }
 
     if (Validator.isEmpty(data.date)) {

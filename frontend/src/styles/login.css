@@ -1,0 +1,72 @@
+.login-logo{
+  width: 10%;
+  height: 8.6%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.login-page-header{
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-username-field{
+    height: 10vh;
+    width: 40vw;
+    background-color: rgb(222, 224, 224);
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+
+.login-username-field:focus {
+    border: 2px solid rgb(247, 155, 36);
+    border-radius: 4px;
+}
+
+.login-password-field{
+    height: 10vh;
+    width: 40vw;
+    background-color: rgb(222, 224, 224);
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+.login-password-field:focus{
+    border: 2px solid rgb(247, 155, 36);
+    border-radius: 4px;
+}
+
+.login-submit-button{
+    height: 8vh;
+    width: 40vw;
+    background-color: rgb(247, 182, 99);
+    border-radius: 50px;
+    margin-bottom: 2%;
+    margin-left: .5%;
+    text-align: center;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-submit-button:hover{
+    background-color: rgb(252, 157, 33);
+}

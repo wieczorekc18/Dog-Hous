@@ -7,7 +7,12 @@ import axios from "axios"
 import configureStore from "./store/store"
 import Root from "./components/root"
 import { logout } from "./actions/session_actions";
-import'./styles/splash.css'
+import'./styles/splash.css';
+import "./styles/login.css";
+import "./styles/register.css";
+import "./styles/profile.css";
+import "./styles/show.css";
+import "./styles/new.css";
 
 
 document.addEventListener('DOMContentLoaded', () => {

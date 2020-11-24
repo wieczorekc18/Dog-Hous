@@ -6,7 +6,9 @@ class NewReminder extends React.Component {
         super(props);
 
         this.state = {
-            description: "",
+            recipientName: "",
+            relationship: "",
+            occasion: "",
             date: ""
         }
 
@@ -15,14 +17,16 @@ class NewReminder extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         debugger
-        this.setState({newReminder: nextProps.newReminder.description})
+        this.setState({newReminder: nextProps.newReminder.occasion})
     }
 
     handleSubmit(e){
         debugger
         e.preventDefault();
         let reminder = {
-            description: this.state.description,
+            recipientName: this.state.recipientName,
+            relationship: this.state.relationship,
+            occasion: this.state.occasion,
             date: this.state.date
         }
         this.props.composeReminder(reminder)
@@ -40,15 +44,36 @@ class NewReminder extends React.Component {
     }
 
     render() {
+      debugger
         return (
           <div>
             <form onSubmit={this.handleSubmit}>
               <div>
                 <input
                   type="text"
-                  value={this.state.description}
-                  onChange={this.update("description")}
-                  placeholder="What do you need to be Reminded of?"
+                  value={this.state.recipientName}
+                  onChange={this.update("recipientName")}
+                  placeholder="Who is this reminder for?"
+                />
+                <br />
+                <input
+                  type="text"
+                  value={this.state.relationship}
+                  onChange={this.update("relationship")}
+                  placeholder="What is your relationship to this person?"
+                />
+                {/* <select className="relationship" id="relationship">
+                  <option value="Girlfriend">Girlfriend</option>
+                  <option value="Wife">Wife</option>
+                  <option value="Daughter">Daughter</option>
+                  <option value="Mother">Mother</option>
+                </select> */}
+                <br />
+                <input
+                  type="text"
+                  value={this.state.occasion}
+                  onChange={this.update("occasion")}
+                  placeholder="What's the occasion you need to be reminded for?"
                 />
                 <br />
                 <label for="date">Date you need to be Reminded on:</label>

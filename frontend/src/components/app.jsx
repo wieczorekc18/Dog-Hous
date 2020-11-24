@@ -8,6 +8,7 @@ import LoginFormContainer from "./session/login_form_container";
 import ProfileContainer from "./profile/profile_container"
 import NewReminderContainer from "./reminders/new_reminder_container"
 import ShowReminderContainer from "./reminders/show_reminder_container"
+import NewReminderRecipientContainer from "./reminders/new_reminder_recipient_container"
 
 const MainApp = () => (
   <div>
@@ -18,6 +19,7 @@ const MainApp = () => (
       {/* <ProtectedRoute exact path="/profile" component={NavBarContainer} /> */}
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
       <ProtectedRoute exact path="/reminders/new" component={NewReminderContainer} />
+      <ProtectedRoute exact path="/reminders/new/:recipient" component={NewReminderRecipientContainer} />
       <ProtectedRoute exact path="/reminders/:reminderId" component={ShowReminderContainer} />
       {/* <ProtectedRoute path="/reminders/:reminderId/edit" component={EditReminderFormContainer} /> */}
     </Switch>

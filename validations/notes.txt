@@ -1,0 +1,6 @@
+Need to make validations for Dates of reminders
+
+    * Date must be in the future
+    * Data must not be too far in future
+
+Need to make validations for 

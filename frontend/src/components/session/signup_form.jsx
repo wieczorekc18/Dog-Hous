@@ -6,6 +6,7 @@ class SignupForm extends React.Component {
     super(props);
     this.state = {
       username: "",
+      name: "",
       number: "",
       password: "",
       password2: "",
@@ -35,6 +36,7 @@ class SignupForm extends React.Component {
     e.preventDefault();
     let user = {
       username: this.state.username,
+      name: this.state.name,
       number: this.state.number,
       password: this.state.password,
       password2: this.state.password2,
@@ -43,8 +45,13 @@ class SignupForm extends React.Component {
     this.props.signup(user)
         .then((res) => {
             debugger
-            this.props.login(user)})
+            if(res.errors){
+              return res.errors
+            }else{
+              this.props.login(user)
+            }
             // return this.props.history.push("/login")})
+        })
         .catch((err) => {
           debugger
         })
@@ -63,10 +70,12 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-form-container">
+        <h2 className="signup-header">Create Your Dog-Hous Account</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">
             <br />
             <input
+              className="signup-username-field"
               type="text"
               value={this.state.username}
               onChange={this.update("username")}
@@ -74,6 +83,15 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="signup-username-field"
+              type="text"
+              value={this.state.name}
+              onChange={this.update("name")}
+              placeholder="Your name"
+            />
+            <br />
+            <input
+              className="signup-username-field"
               type="text"
               value={this.state.number}
               onChange={this.update("number")}
@@ -81,6 +99,7 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="signup-username-field"
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
@@ -88,13 +107,18 @@ class SignupForm extends React.Component {
             />
             <br />
             <input
+              className="signup-username-field"
               type="password"
               value={this.state.password2}
               onChange={this.update("password2")}
               placeholder="Confirm Password"
             />
             <br />
-            <input type="submit" value="Submit" />
+            <input
+              className="login-submit-button"
+              type="submit"
+              value="Submit"
+            />
             {this.renderErrors()}
           </div>
         </form>

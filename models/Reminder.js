@@ -8,7 +8,19 @@ const ReminderSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
     },
-    description: {
+    recipientName: {
+        type: String,
+        required: true
+    },
+    relationship: {
+        type: String,
+        required: true
+    },
+    // recipientLikes: {
+    //     type: String,
+    //     required: false
+    // },
+    occasion: {
         type: String,
         required: true
     },

@@ -1,0 +1,10 @@
+.reminderBox{
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.reminderContainer{
+  border: 3px solid blue;
+  margin: 5px;
+  padding: 1%;
+}
