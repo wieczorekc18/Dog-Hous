@@ -1,6 +1,6 @@
 import React from "react";
 
-class NewReminder extends React.Component {
+class NewReminderRecipient extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,18 @@ class NewReminder extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     debugger;
-    this.setState({ newReminder: nextProps.newReminder.occasion });
+    this.setState({ 
+        fetchedReminder: nextProps.fetchedReminder,
+        recipientName: nextProps.fetchedReminder.recipientName,
+        relationship: nextProps.fetchedReminder.relationship
+    });
+  }
+
+  componentDidMount() {
+    debugger;
+    this.props.fetchReminder(this.props.match.params.reminderId);
+    debugger
+    //set state
   }
 
   handleSubmit(e) {
@@ -43,15 +54,15 @@ class NewReminder extends React.Component {
   }
 
   render() {
-      debugger
-      
+    debugger;
+    // this.props.fetchedReminder gets correct one
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <div>
-            {/* get recipient name and relationship from url */}
+            <p>{this.state.recipientName}</p>
             <br />
-            
+            <p>{this.state.relationship}</p>
             <br />
             <input
               type="text"
@@ -74,4 +85,4 @@ class NewReminder extends React.Component {
   }
 }
 
-export default NewReminder;
+export default NewReminderRecipient;

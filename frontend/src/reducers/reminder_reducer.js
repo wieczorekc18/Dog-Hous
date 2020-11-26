@@ -28,8 +28,10 @@ import {
 //   }
 // };
 
+//need to change reducer formating
+
 const RemindersReducer = (
-    state = { all: {}, user: {}, new: undefined },
+    state = { all: {}, user: {}, fetched: undefined, new: undefined },
     action
     ) => {
     Object.freeze(state);
@@ -39,11 +41,14 @@ const RemindersReducer = (
             newState.user = action.reminders.data;
             return newState;
         case RECEIVE_NEW_REMINDER:
+            debugger
             newState.new = action.reminder.data;
+            debugger
             return newState;
         case RECEIVE_REMINDER:
             debugger
-            newState.new = action.reminder.data;
+            newState.fetched = action.reminder.data;
+            debugger
             return newState
         case DELETE_REMINDER:
             debugger

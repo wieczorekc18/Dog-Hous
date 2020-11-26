@@ -6,7 +6,7 @@ import { destroyReminder } from "../../actions/reminder_actions"
 const mapStateToProps = (state) => {
     debugger
     return({
-        reminder: state.reminders.new
+        reminder: state.reminders.fetched
     })
 };
 

@@ -17,9 +17,9 @@ const MainApp = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       {/* <ProtectedRoute exact path="/profile" component={NavBarContainer} /> */}
-      <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+      <ProtectedRoute exact path="/profile" component={ProfileContainer} key={Math.random(0, 500)}/>
       <ProtectedRoute exact path="/reminders/new" component={NewReminderContainer} />
-      <ProtectedRoute exact path="/reminders/new/:recipient" component={NewReminderRecipientContainer} />
+      <ProtectedRoute exact path="/reminders/add/:reminderId" component={NewReminderRecipientContainer} />
       <ProtectedRoute exact path="/reminders/:reminderId" component={ShowReminderContainer} />
       {/* <ProtectedRoute path="/reminders/:reminderId/edit" component={EditReminderFormContainer} /> */}
     </Switch>

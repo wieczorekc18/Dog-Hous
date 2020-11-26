@@ -18,7 +18,7 @@ class Profile extends React.Component {
     componentWillMount(){
         debugger
         console.log(this.props.currentUser.id)
-        this.props.fetchUserReminders(this.props.currentUser.id)
+        this.props.fetchUserReminders(this.props.currentUser.id);
     }
 
     componentWillReceiveProps(newState){
@@ -81,6 +81,7 @@ class Profile extends React.Component {
             debugger
             // let sorted = this.sortReminders(this.state.reminders)
             debugger
+            let firstRId = this.state.reminders[0]._id
             return(
                 <div>
                     <NavBar/>
@@ -108,7 +109,7 @@ class Profile extends React.Component {
                                   />
                                 </div>
                             ))}
-                            <Link to={`/reminders/new/${recipient}`}>+ Add another reminder for {recipient}</Link>
+                            <Link to={`/reminders/add/${firstRId}`}>+ Add another reminder for {recipient}</Link>
                         </div>
                     ))}
                     <Link to={"/reminders/new"}>+ Add a New Person</Link>

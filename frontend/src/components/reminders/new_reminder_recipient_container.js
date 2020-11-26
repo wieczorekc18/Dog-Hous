@@ -1,18 +1,24 @@
 import { connect } from "react-redux";
 import { composeReminder } from "../../actions/reminder_actions";
-import NewReminder from "./new_reminder_form";
+import { fetchReminder } from "../../actions/reminder_actions";
+import NewReminderRecipient from "./new_reminder_recipient_form";
 
 const mapStateToProps = (state) => {
+    debugger
+    //add
   return {
     currentUser: state.session.user,
-    newReminder: state.reminders.new,
+    fetchedReminder: state.reminders.fetched,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
+    debugger
+    //add
   return {
     composeReminder: (data) => dispatch(composeReminder(data)),
+    fetchReminder: (id) => dispatch(fetchReminder(id))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewReminder);
+export default connect(mapStateToProps, mapDispatchToProps)(NewReminderRecipient);
