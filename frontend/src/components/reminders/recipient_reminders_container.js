@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
-import { fetchUserReminders } from "../../actions/reminder_actions";
-import Profile from "./profile";
-import { destroyReminder } from "../../actions/reminder_actions";
+import { fetchReminder, fetchUserReminders, destroyReminder } from "../../actions/reminder_actions";
+import RecipientReminders from "./recipient_reminders";
 
 const mapStateToProps = (state) => {
     debugger
     return {
         reminders: Object.values(state.reminders.user),
         currentUser: state.session.user,
+        fetchedReminder: state.reminders.fetched,
     };
 };
 
@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUserReminders: (id) => dispatch(fetchUserReminders(id)),
     destroyReminder: (id) => dispatch(destroyReminder(id)),
+    fetchReminder: (id) => dispatch(fetchReminder(id)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipientReminders);

@@ -5,9 +5,13 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
 import { withRouter } from "react-router";
 
-const mapStateToProps = (state) => ({
-  loggedIn: state.session.isAuthenticated,
-});
+const mapStateToProps = (state) => {
+  debugger;
+  return {
+    loggedIn: state.session.isAuthenticated,
+    currentUser: state.session.user,
+  };
+};
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -26,12 +30,15 @@ class NavBar extends React.Component {
       debugger
     if (this.props.loggedIn) {
       return (
-        <div>
-          <Link to={"/profile"}>Profile</Link>
-          <br/>
-          <Link to={"/reminders/new"}>Make a Reminder</Link>
-          <br/>
-          <button onClick={this.logoutUser}>Logout</button>
+        <div className="links-container">
+          {/* <p className="username-navbar">{this.props.currentUser.username}</p> */}
+          <Link to={"/profile"} className="profile-link">
+            Profile
+          </Link>
+          <br />
+          <button onClick={this.logoutUser} className="logout-link">
+            Logout
+          </button>
         </div>
       );
     } else {
@@ -46,8 +53,9 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Dog-Hous</h1>
+      <div className="nav-container">
+        <p className="nav-circle"></p>
+        <h1 className="nav-dh-title">Dog-Hous</h1>
         {this.getLinks()}
       </div>
     );

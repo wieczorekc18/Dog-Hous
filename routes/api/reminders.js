@@ -40,7 +40,10 @@ router.get("/:id", passport.authenticate('jwt', { session: false }), (req, res) 
 //check for bugs
 router.delete("/:id", passport.authenticate('jwt', { session: false }), (req, res) => {
   Reminder.findById(req.params.id)
-    .then((reminder) => reminder.remove())
+    .then((reminder) => {
+      reminder.remove()
+      return res.json(success)
+    })
     .catch((err) => res.status(400).json(err));
 });
 

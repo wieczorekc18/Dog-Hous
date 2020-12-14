@@ -35,40 +35,48 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     });
 })
 
-// router.post("/register", (req, res) => {
-//     const { errors, isValid } = validateRegisterInput(req.body)
 
-//     if(!isValid){
-//         return res.status(400).json(errors);
-//     }
+// DON'T USE THIS POST ROUTE
+// DOESN'T INCLUDE MESSAGEBIRD VALIDATIONS
+router.post("/register", (req, res) => {
+    const { errors, isValid } = validateRegisterInput(req.body)
 
-//     User.findOne({ username: req.body.username })
-//     .then(user => {
-//         if(user){
-//             return res.status(400).json({ username: "username already exists"})
-//         }else{
-//             const newUser = new User({
-//                 username: req.body.username,
-//                 name: req.body.name,
-//                 number: req.body.number,
-//                 password: req.body.password
-//             })
+    if(!isValid){
+        return res.status(400).json(errors);
+    }
+
+    User.findOne({ username: req.body.username })
+    .then(user => {
+        if(user){
+            return res.status(400).json({ username: "username already exists"})
+        }else{
+            const newUser = new User({
+                username: req.body.username,
+                name: req.body.name,
+                number: req.body.number,
+                password: req.body.password
+            })
 
 
-//             bcrypt.genSalt(10, (err, salt) => {
-//                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-//                     if(err) throw err;
-//                     newUser.password = hash;
-//                     newUser.save()
-//                         .then((user) => res.json(user))
-//                         .catch(err => console.log(err))
-//                 })
-//             })
-//         }
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if(err) throw err;
+                    newUser.password = hash;
+                    newUser.save()
+                        .then((user) => res.json(user))
+                        .catch(err => console.log(err))
+                })
+            })
+        }
 
-//     })
-// });
+    })
+});
 
+
+
+// USE THIS POST ROUTE BELOW IT INCLUDES 
+// MESSAGEBIRD PHONE VALIDATIONS
+/*
 router.post("/register", (req, res) => {
     console.log("Trying to signup");
   const { errors, isValid } = validateRegisterInput(req.body);
@@ -119,9 +127,10 @@ router.post("/register", (req, res) => {
           }
         }
       );
-    }
+    } 
   });
 });
+*/
 
 /*
 

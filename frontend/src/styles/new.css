@@ -1,0 +1,82 @@
+.new-reminder-form{
+
+}
+
+.new-reminder-outer-div{
+    display: flex;
+}
+
+.new-reminder-container{
+    margin-left: 2%;
+}
+
+.name-input-field{
+    height: 6vh;
+    width: 24vw;
+    background-color: rgb(240, 241, 241);
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 12px;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+
+.name-input-field:focus {
+    border: 2px solid rgb(247, 155, 36);
+    border-radius: 4px;
+}
+
+.relationship-selector{
+    margin-left: .5%;
+    height: 6vh;
+    width: 24vw;
+    background-color: rgb(240, 241, 241);
+    border-radius: 5px;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 12px;
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+.occasion-selector{
+    margin-left: .5%;
+    height: 6vh;
+    width: 24vw;
+    background-color: rgb(240, 241, 241);
+    border-radius: 5px;
+    margin-bottom: 2%;
+    padding-left: .5%;
+    font-size: 12px;
+    border: 2px solid rgb(209, 205, 205);
+    outline: none;
+}
+
+.new-reminder-submit-button{
+    height: 5vh;
+    width: 25vw;
+    background-color: rgb(247, 182, 99);
+    border-radius: 50px;
+    margin-top: 2%;
+    margin-left: .5%;
+    text-align: center;
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.new-reminder-submit-button:hover{
+    background-color: rgb(252, 157, 33);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+
+
+.recipient-name-span{
+    font-weight: 600;
+    font-size: larger;
+}

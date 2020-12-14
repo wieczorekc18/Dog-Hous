@@ -69,4 +69,5 @@
 
 .login-submit-button:hover{
     background-color: rgb(252, 157, 33);
+    cursor: pointer;
 }

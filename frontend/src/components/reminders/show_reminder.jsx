@@ -23,7 +23,11 @@ class ShowReminder extends React.Component {
     handleDestroy(id){
         debugger
         this.props.destroyReminder(id)
-            .then(() => this.props.history.push("/"))
+            .then(res => {
+                debugger
+                // return this.props.history.push(`/reminders/${res.reminder.data._id}`)
+                return this.props.history.push("/")
+            })
     }
 
     render() {

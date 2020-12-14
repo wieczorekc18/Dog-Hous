@@ -21,6 +21,7 @@
 
 .subscribeText:hover{
   border: 2px solid rgb(46, 26, 2);
+  cursor: pointer;
 }
 
 .loginText{
@@ -33,6 +34,7 @@
 
 .loginText:hover{
   border: 2px solid rgb(46, 26, 2);
+  cursor: pointer;
 }
 
 .splash{

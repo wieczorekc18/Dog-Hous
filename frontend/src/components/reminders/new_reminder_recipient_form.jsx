@@ -1,4 +1,5 @@
 import React from "react";
+import Nav from "../nav/navbar";
 
 class NewReminderRecipient extends React.Component {
   constructor(props) {
@@ -41,7 +42,8 @@ class NewReminderRecipient extends React.Component {
     };
     this.props.composeReminder(reminder).then((res) => {
       debugger;
-      return this.props.history.push(`/reminders/${res.reminder.data._id}`);
+    //   return this.props.history.push(`/reminders/${res.reminder.data._id}`);
+        return this.props.history.push("/");
     });
   }
 
@@ -57,19 +59,36 @@ class NewReminderRecipient extends React.Component {
     debugger;
     // this.props.fetchedReminder gets correct one
     return (
-      <div>
+      <div className="new-reminder-outer-div">
+        <Nav />
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <p>{this.state.recipientName}</p>
+          <div className="new-reminder-container">
+            <h2 className="new-reminder-greeting">
+              Add another Reminder for <span className="recipient-name-span">{this.state.recipientName}</span>
+            </h2>
             <br />
-            <p>{this.state.relationship}</p>
-            <br />
-            <input
+            {/* <p>{this.state.relationship}</p>
+            <br /> */}
+            {/* <input
               type="text"
               value={this.state.occasion}
               onChange={this.update("occasion")}
               placeholder="What's the occasion you need to be reminded for?"
-            />
+            /> */}
+            What is the occasion you need to be reminded for?
+            {
+              <select
+                className="occasion-selector"
+                id="relationship"
+                value={this.state.occasion}
+                onChange={this.update("occasion")}
+              >
+                <option value="Must Select"></option>
+                <option value="Birthday">Birthday</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Other">Other</option>
+              </select>
+            }
             <br />
             <label for="date">Date you need to be Reminded on:</label>
             <input
@@ -77,7 +96,12 @@ class NewReminderRecipient extends React.Component {
               value={this.state.date}
               onChange={this.update("date")}
             />
-            <input type="submit" value="SUBMIT" />
+            <br />
+            <input
+              className="new-reminder-submit-button"
+              type="submit"
+              value="SUBMIT"
+            />
           </div>
         </form>
       </div>

@@ -20,10 +20,13 @@ export const receiveNewReminder = (reminder) => ({
   reminder,
 });
 
-export const removeReminder = id => ({
+export const removeReminder = id => {
+  debugger
+  return{
     type: DELETE_REMINDER,
     id
-})
+  }
+}
 
 export const fetchUserReminders = (id) => (dispatch) =>
   getUserReminders(id)
@@ -40,7 +43,10 @@ export const composeReminder = (data) => (dispatch) => {
 export const destroyReminder = id => dispatch => {
     debugger
     return deleteReminder(id)
-        .then(id => dispatch(removeReminder(id)))
+        .then(id => {
+          debugger
+          dispatch(removeReminder(id))
+        })
         .catch((err) => console.log(err));   
 }
 

@@ -1,0 +1,14 @@
+main profile page just list each person's name
+
+click on a person and it sends you to their 
+page
+
+their page lists all reminders
+
+when click on a reminder then bring up details 
+about it in a sidebar that you can modify
+
+each sms reminder is a reminder model that can be customized
+
+admin page can modify any reminder in dynamic way
+
