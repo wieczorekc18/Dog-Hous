@@ -24,6 +24,10 @@ const ReminderSchema = new Schema({
         type: String,
         required: true
     },
+    hoursBefore: {
+        type: Number,
+        default: 10
+    },
     date: {
         type: Date,
         required: true

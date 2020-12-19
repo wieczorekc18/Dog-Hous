@@ -104,6 +104,7 @@ router.post(
       user: req.user.id,
       recipientName: req.body.recipientName,
       relationship: req.body.relationship,
+      hoursBefore: req.body.hoursBefore,
       occasion: req.body.occasion,
       date: req.body.date,
       //req.body.date comes in year-month-day eg. 2021-04-20
@@ -112,7 +113,7 @@ router.post(
     newReminder.save().then((reminder) => {
       //this reminder.date comes in as 2021-04-20T00:00:00.000Z
       // here is where we set the messagebird message
-      //set up 3 reminders
+      // set up 3 reminders
       // let message = formatReminder(reminder);
       let reminder1DT = new Date(reminder.date);
       let reminder2DT = new Date(reminder.date);
@@ -139,9 +140,9 @@ router.post(
           // messagebird.messages.create({
           //   originator: "DOG-HOUS",
           //   recipients: [ "12037317177" ],
-          //   scheduledDatetime: "2020-11-18T21:56:23.000Z",
+          //   // scheduledDatetime: "2020-11-18T21:56:23.000Z",
           //   body:
-          //     "hey toots one more time lmk if you get this: SENT BY " + user.username,
+          //     "hey Erin it's your friend " + user.name,
           // }, function(err, response){
           //   if(err){
           //     console.log(err)

@@ -8,10 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const star = <FontAwesomeIcon icon={faStar} />;
 const pen = <FontAwesomeIcon icon={faPen} />;
 const bell = <FontAwesomeIcon icon={faBell} />;
+const trash = <FontAwesomeIcon icon={faTrashAlt} />;
 
 class Profile extends React.Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class Profile extends React.Component {
       sortedReminders: {},
       recipient: "",
       relationship: "",
+      fetchedId: "",
     };
 
     this.handleDestroy = this.handleDestroy.bind(this);
@@ -34,8 +37,10 @@ class Profile extends React.Component {
             debugger 
             this.setState({ 
                 relationship: res.reminder.data.relationship,
-                recipient: res.reminder.data.recipientName
+                recipient: res.reminder.data.recipientName,
+                fetchedId: res.reminder.data._id,
             });
+            debugger
         })
     this.props.fetchUserReminders(this.props.currentUser.id)
         .then(res => {
@@ -108,49 +113,28 @@ class Profile extends React.Component {
     render() {
         debugger;
         return (
-            <div className="profile-container">
+            <div className="recipient-page-container">
                 <NavBar />
-                <div className="profile-center-container">
-                    <h2 className="profile-greeting">
-                    What's up {this.props.currentUser.name}?
+                <div className="recipient-page-center-container">
+                    <h2 className="recipient-page-heading">
+                        {this.state.recipient} ({this.state.relationship  })
                     </h2>
+                    <Link
+                        className="link-to-new-for-existing"
+                        to={`/reminders/add/${this.state.fetchedId}`}
+                    >
+                        <span className="add-another">Add another reminder for {this.state.recipient}</span>
+                    </Link>
+                    
                     {/* {this.state.reminders.map(reminder => (
                                 <ReminderBox key={reminder._id} id={reminder._id} recipientName={reminder.recipientName} date={reminder.date}/>
                                 ))} */}
-                    <ul className="profile-recipient-ul">
                     {Object.keys(this.state.sortedReminders).map((recipient) => (
-                        <div className="reminderContainer">
-                        <li className="recipient-li">
-                            <div>
-                            <Link
-                                className="link-recipient-page"
-                                to={`/reminders/recipient/${this.state.sortedReminders[recipient][0]._id}`}
-                            >
-                                <p>{recipient}</p>
-                            </Link>
-                            </div>
-                            <div className="recipient-li-icons">
-                            <span className="star-icon">
-                                {star} {this.state.sortedReminders[recipient].length}{" "}
-                            </span>
-                            <Link
-                                className="link-to-existing"
-                                to={`/reminders/add/${this.state.sortedReminders[recipient][0]._id}`}
-                            >
-                                <span className="add-another">{pen}</span>
-                            </Link>
-                            </div>
-                        </li>
+                        <div className="recipient-page-reminderContainer">
+                        
                         {this.state.sortedReminders[recipient].map((reminder) => (
-                            <div className="reminderBox">
-                                <button
-                                    className="reminder-delete-button"
-                                    onClick={() =>
-                                        this.handleDestroy(reminder._id)
-                                    }
-                                    >
-                                    x
-                                </button>
+                            <div className="reminder-box-container">
+                                
                                 <ReminderBox
                                     key={reminder._id}
                                     id={reminder._id}
@@ -158,11 +142,18 @@ class Profile extends React.Component {
                                     occasion={reminder.occasion}
                                     date={reminder.date}
                                 />
+                                <button
+                                    className="reminder-delete-button"
+                                    onClick={() =>
+                                        this.handleDestroy(reminder._id)
+                                    }
+                                    >
+                                    <span>{trash}</span>
+                                </button>
                             </div>
                         ))}
                         </div>
                     ))}
-                    </ul>
 
                     {/* <button onClick={() => setModalIsOpen(true)}>+ Add a New Person</button> */}
                     {/* <Modal isOpen={modalIsOpen}> */}

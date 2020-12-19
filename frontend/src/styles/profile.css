@@ -7,11 +7,17 @@
   height: 100vh;
   background-color: rgb(247, 205, 150);
   width: 15vw;
-  margin-right: 5%;
+  /* margin-right: 5%; */
   display: flex;
   flex-direction: column;
   align-items: center;
 
+}
+.nav-dh-title{
+  font-size: 200%;
+}
+.nav-h-title{
+  font-size: 200%;
 }
 
 .star-icon{
@@ -20,32 +26,49 @@
 
 .profile-center-container{
   width: 60vw;
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-right: 3%;
+  border: solid black 1px;
 }
 
-.nav-circle{
-  background-color: black;
-  height: 10vh;
-  width: 6vw;
-  border-radius: 100%;
+.nav-user-circle{
+  font-size: xx-large;
   margin-top: 5%;
 }
 
 .link-to-new{
-  margin-left: 80%;
+  margin-left: 70%;
+  border: solid black 1px;
+  background-color: rgb(233, 231, 231);
+  padding: 1%;
+}
+
+.link-to-new:hover{
+  border: solid black 2px;
 }
 
 .profile-recipient-ul{
   border-top: solid rgb(192, 189, 189) 1px;
+  margin-top: 2%;
 }
 
 .recipient-li{
   border-bottom: solid rgb(192, 189, 189) 1px;
-  
   padding-left: 1.5%;
   display: flex;
   justify-content: space-between;
 
 }
+.profile-greeting{
+  font-size: larger;
+
+}
+.sub-greeting{
+  margin-bottom: 2%;
+}
+
+
 
 
 /* .reminderBox{

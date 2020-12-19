@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
 import { withRouter } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+const userIcon = <FontAwesomeIcon icon={faUser} />;
 
 const mapStateToProps = (state) => {
   debugger;
@@ -54,8 +58,9 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="nav-container">
-        <p className="nav-circle"></p>
-        <h1 className="nav-dh-title">Dog-Hous</h1>
+        <h1 className="nav-dh-title">Dog</h1>
+        <h1 className="nav-h-title">Hous</h1>
+        <p className="nav-user-circle">{userIcon}</p>
         {this.getLinks()}
       </div>
     );

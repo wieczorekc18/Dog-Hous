@@ -20,6 +20,10 @@ module.exports = function validateReminder(data){
         errors.relationship = 'Reminder must list recipients relationship to the user'
     }
 
+    // if (Validator.isEmpty(data.hoursBefore)) {
+    //     errors.hoursBefore = 'Reminder must identify how many hours before the occasion you would like to recieve a text'
+    // }
+
     if(Validator.isEmpty(data.occasion)) {
         errors.occasion = 'Reminder must have an occasion associated with it'
     }

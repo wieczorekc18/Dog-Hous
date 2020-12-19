@@ -13,6 +13,7 @@ import "./styles/register.css";
 import "./styles/profile.css";
 import "./styles/show.css";
 import "./styles/new.css";
+import "./styles/recip_reminders.css";
 
 
 document.addEventListener('DOMContentLoaded', () => {

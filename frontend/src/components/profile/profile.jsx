@@ -7,11 +7,9 @@ import NewReminderContainer from "../reminders/new_reminder_container"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 const star = <FontAwesomeIcon icon={faStar} />;
 const pen = <FontAwesomeIcon icon={faPen} />;
-const bell = <FontAwesomeIcon icon={faBell} />;
 
 class Profile extends React.Component {
     constructor(props){
@@ -163,7 +161,9 @@ class Profile extends React.Component {
                                 </Link>
                             </div>
                             <div className="recipient-li-icons">
-                                <span className="star-icon">{star} { this.state.sortedReminders[recipient].length}   </span>
+                                <Link to={`/reminders/recipient/${this.state.sortedReminders[recipient][0]._id}`}>
+                                    <span className="star-icon">{star} { this.state.sortedReminders[recipient].length}   </span>
+                                </Link>
                                 <Link
                                     className="link-to-existing"
                                     to={`/reminders/add/${this.state.sortedReminders[recipient][0]._id}`}

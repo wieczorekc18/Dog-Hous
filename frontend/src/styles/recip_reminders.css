@@ -1,0 +1,44 @@
+
+.recipient-page-container{
+  display: flex;
+}
+
+.recipient-page-center-container{
+    width: 60vw;
+    padding-top: 3%;
+    padding-left: 5%;
+    padding-right: 3%;
+    border: solid black 1px;
+}
+
+.recipient-page-heading{
+    margin-bottom: 3%;
+}
+.link-to-new-for-existing{
+    border: solid black 1px;
+    background-color: rgb(233, 231, 231);
+    padding: 1%;
+}
+.link-to-new-for-existing:hover{
+  border: solid black 2px;
+}
+
+.recipient-page-reminderContainer{
+    margin-top: 2%;
+}
+
+.reminder-box-container{
+    display: flex;
+    width: 40%;
+    border-left: gray solid 1px;
+    margin-bottom: 1%;
+    padding-left: 3%;
+}
+
+.reminder-box{
+    margin-top: 7%;
+}
+
+.reminder-delete-button{
+    margin-left: 10%;
+}
