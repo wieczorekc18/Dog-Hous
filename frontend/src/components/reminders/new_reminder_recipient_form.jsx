@@ -10,24 +10,26 @@ class NewReminderRecipient extends React.Component {
       relationship: "",
       occasion: "",
       date: "",
+      errors: {},
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     debugger;
-    this.setState({ 
-        fetchedReminder: nextProps.fetchedReminder,
-        recipientName: nextProps.fetchedReminder.recipientName,
-        relationship: nextProps.fetchedReminder.relationship
+    this.setState({
+      fetchedReminder: nextProps.fetchedReminder,
+      recipientName: nextProps.fetchedReminder.recipientName,
+      relationship: nextProps.fetchedReminder.relationship,
     });
   }
 
   componentDidMount() {
     debugger;
     this.props.fetchReminder(this.props.match.params.reminderId);
-    debugger
+    debugger;
     //set state
   }
 
@@ -42,10 +44,21 @@ class NewReminderRecipient extends React.Component {
     };
     this.props.composeReminder(reminder).then((res) => {
       debugger;
-    //   return this.props.history.push(`/reminders/${res.reminder.data._id}`);
-        return this.props.history.push("/");
+      //   return this.props.history.push(`/reminders/${res.reminder.data._id}`);
+      return this.props.history.push("/");
     });
   }
+
+  // renderErrors() {
+  //   debugger
+  //   return (
+  //     <ul>
+  //       {Object.keys(this.state.errors).map((error, i) => (
+  //         <li key={`error-${i}`}>{this.state.errors[error]}</li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 
   update(field) {
     // debugger
@@ -64,7 +77,10 @@ class NewReminderRecipient extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="new-reminder-container">
             <h2 className="new-reminder-greeting">
-              Add another Reminder for <span className="recipient-name-span">{this.state.recipientName}</span>
+              Add another Reminder for{" "}
+              <span className="recipient-name-span">
+                {this.state.recipientName}
+              </span>
             </h2>
             <br />
             {/* <p>{this.state.relationship}</p>
@@ -86,6 +102,10 @@ class NewReminderRecipient extends React.Component {
                 <option value="Must Select"></option>
                 <option value="Birthday">Birthday</option>
                 <option value="Anniversary">Anniversary</option>
+                <option value="Christmas">Christmas</option>
+                <option value="Mother's Day">Mother's Day</option>
+                <option value="Father's Day">Father's Day</option>
+                <option value="Valentine's Day">Valentine's Day</option>
                 <option value="Other">Other</option>
               </select>
             }
@@ -104,6 +124,7 @@ class NewReminderRecipient extends React.Component {
             />
           </div>
         </form>
+        {/* {this.renderErrors()} */}
       </div>
     );
   }

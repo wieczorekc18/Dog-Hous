@@ -1,5 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+const dog = <FontAwesomeIcon icon={faDog} />;
+const house = <FontAwesomeIcon icon={faHome} />;
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -13,7 +19,7 @@ class SignupForm extends React.Component {
       errors: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearedErorrs = false;
+    this.clearedErrors = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,6 +30,7 @@ class SignupForm extends React.Component {
 
     this.setState({ errors: nextProps.errors });
   }
+
 
   update(field) {
     return (e) =>
@@ -70,6 +77,7 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-form-container">
+        <h1 className="login-icons">{dog} {house}</h1>
         <h2 className="signup-header">Create Your Dog-Hous Account</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="signup-form">

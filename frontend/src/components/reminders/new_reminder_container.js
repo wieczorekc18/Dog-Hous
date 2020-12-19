@@ -3,7 +3,9 @@ import { composeReminder } from '../../actions/reminder_actions'
 import NewReminder from "./new_reminder_form"
 
 const mapStateToProps = (state) => {
+  debugger
   return {
+    errors: state.errors.reminders,
     currentUser: state.session.user,
     newReminder: state.reminders.new
   };

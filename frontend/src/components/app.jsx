@@ -22,7 +22,7 @@ const MainApp = () => (
       <ProtectedRoute exact path="/reminders/new" component={NewReminderContainer} />
       <ProtectedRoute exact path="/reminders/recipient/:reminderId" component={RecipientReminderContainer} />
       <ProtectedRoute exact path="/reminders/add/:reminderId" component={NewReminderRecipientContainer} />
-      <ProtectedRoute exact path="/reminders/:reminderId" component={ShowReminderContainer} />
+      {/* <ProtectedRoute exact path="/reminders/:reminderId" component={ShowReminderContainer} /> */}
       {/* <ProtectedRoute path="/reminders/:reminderId/edit" component={EditReminderFormContainer} /> */}
     </Switch>
   </div>

@@ -17,7 +17,7 @@
   font-size: 200%;
 }
 .nav-h-title{
-  font-size: 200%;
+  font-size: 160%;
 }
 
 .star-icon{
@@ -67,6 +67,33 @@
 .sub-greeting{
   margin-bottom: 2%;
 }
+
+.new-profile-greeting{
+  font-size: 150%;
+}
+
+.new-sub-greeting{
+  margin-bottom: 3%;
+}
+
+.greet-new-container{
+  width: 60vw;
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-right: 3%;
+  border: solid black 1px;
+}
+
+.link-to-brand-new{
+  border: solid black 1px;
+  background-color: rgb(233, 231, 231);
+  padding: 1%;
+}
+
+.link-to-brand-new:hover{
+  border: solid black 2px;
+}
+
 
 
 

@@ -1,6 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import logo from "../splash/DHlogo.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+const dog = <FontAwesomeIcon icon={faDog} />;
+const house = <FontAwesomeIcon icon={faHome} />;
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -62,7 +68,8 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="login-container">
-        <img className="login-logo" src={logo} alt="asdf" />
+        {/* <img className="login-logo" src={logo} alt="asdf" /> */}
+        <h1 className="login-icons">{dog} {house}</h1>
         <h2 className="login-page-header">Log In to Dog-Hous</h2>
         <form onSubmit={this.handleSubmit}>
           <div>

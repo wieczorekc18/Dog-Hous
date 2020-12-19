@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     debugger
     //add
   return {
+    errors: state.errors.reminders,
     currentUser: state.session.user,
     fetchedReminder: state.reminders.fetched,
   };

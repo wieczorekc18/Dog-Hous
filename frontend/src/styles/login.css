@@ -16,17 +16,21 @@
     align-items: center;
 }
 
+.login-icons{
+    font-size: 100px;
+}
+
 .login-username-field{
-    height: 10vh;
+    height: 8vh;
     width: 40vw;
-    background-color: rgb(222, 224, 224);
+    background-color: rgb(250, 250, 250);
     border-radius: 5px;
     margin-top: 5%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
     padding-left: .5%;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 2px solid rgb(209, 205, 205);
+    border: 2px solid rgb(0, 0, 0);
     outline: none;
 }
 
@@ -37,16 +41,16 @@
 }
 
 .login-password-field{
-    height: 10vh;
+    height: 8vh;
     width: 40vw;
-    background-color: rgb(222, 224, 224);
+    background-color: rgb(250, 250, 250);
     border-radius: 5px;
     margin-top: 5%;
     margin-bottom: 2%;
     padding-left: .5%;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 2px solid rgb(209, 205, 205);
+    border: 2px solid rgb(0, 0, 0);
     outline: none;
 }
 

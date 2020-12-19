@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 
+
 const star = <FontAwesomeIcon icon={faStar} />;
 const pen = <FontAwesomeIcon icon={faPen} />;
 
@@ -111,11 +112,11 @@ class Profile extends React.Component {
             return (
               <div className="profile-container">
                 <NavBar />
-                <div>
-                  <h2 className="profile-greeting">
+                <div className="greet-new-container">
+                  <h2 className="new-profile-greeting">
                     What's up {this.props.currentUser.name}?
                   </h2>
-                  <h2 className="sub-greeting">
+                  <h2 className="new-sub-greeting">
                     You don't have any Reminders to show yet
                   </h2>
                   <Link className="link-to-brand-new" to={"/reminders/new"}>

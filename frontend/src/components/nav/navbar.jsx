@@ -6,6 +6,11 @@ import { logout } from "../../actions/session_actions";
 import { withRouter } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faDog } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+const dog = <FontAwesomeIcon icon={faDog} />;
+const house = <FontAwesomeIcon icon={faHome} />;
 
 const userIcon = <FontAwesomeIcon icon={faUser} />;
 
@@ -58,9 +63,11 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="nav-container">
-        <h1 className="nav-dh-title">Dog</h1>
-        <h1 className="nav-h-title">Hous</h1>
-        <p className="nav-user-circle">{userIcon}</p>
+        <h1 className="nav-dh-title">
+          {dog} {house}
+        </h1>
+        <h1 className="nav-h-title">DOG HOUS</h1>
+        {/* <p className="nav-user-circle">{userIcon}</p> */}
         {this.getLinks()}
       </div>
     );

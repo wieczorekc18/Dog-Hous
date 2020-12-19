@@ -32,6 +32,9 @@ const ReminderSchema = new Schema({
         type: Date,
         required: true
     },
+    likes:{
+        type: Array,
+    },
     timestamp: {
         type: Date,
         default: Date.now
