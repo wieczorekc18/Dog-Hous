@@ -151,6 +151,7 @@ router.post("/register", (req, res) => {
 router.post('/login', (req, res) => {
     const {errors, isValid } = validateLoginInput(req.body);
     console.log("Trying to login")
+    console.log(req.body.username)
 
     if(!isValid){
         return res.status(400).json(errors);
@@ -167,7 +168,7 @@ router.post('/login', (req, res) => {
                     .status(404)
                     .json({ username: "This username does not exist"});
             }
-
+            console.log("found the user")
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if(isMatch){
