@@ -12,7 +12,6 @@ const path = require("path");
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
-
 mongoose
 .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => console.log("Connected to MongoDB"))
