@@ -154,6 +154,8 @@ router.post('/login', (req, res) => {
     console.log(req.body.username)
 
     if(!isValid){
+      console.log("not valid")
+      console.log(errors)
         return res.status(400).json(errors);
     }
 
