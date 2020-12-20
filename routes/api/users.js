@@ -162,7 +162,7 @@ router.post('/login', (req, res) => {
     const username = req.body.username;
     // const number = req.body.number;
     const password = req.body.password;
-
+    console.log("Still trying to login");
     User.findOne({ username })
         .then(user => {
             if(!user){

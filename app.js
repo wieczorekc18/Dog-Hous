@@ -12,10 +12,14 @@ const path = require("path");
 app.use(passport.initialize());
 
 require('./config/passport')(passport);
+
 mongoose
 .connect(db, { useUnifiedTopology: true, useNewUrlParser: true })
 .then(() => console.log("Connected to MongoDB"))
-.catch((err) => console.log(err));
+.catch((err) => {
+    console.log("failed to connect to mongo") 
+    console.log(err)
+});
 
 app.use(bodyParser.urlencoded({
     extended: false
