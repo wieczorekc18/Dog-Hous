@@ -19,6 +19,7 @@ mongoose
 .catch((err) => {
     console.log("failed to connect to mongo") 
     console.log(err)
+    console.log("the one above me is the reason why");
 });
 
 app.use(bodyParser.urlencoded({
