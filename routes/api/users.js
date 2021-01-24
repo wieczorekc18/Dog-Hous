@@ -40,7 +40,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 // DOESN'T INCLUDE MESSAGEBIRD VALIDATIONS
 router.post("/register", (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body)
-
+    console.log("trying to signup")
     if(!isValid){
         return res.status(400).json(errors);
     }
@@ -50,6 +50,10 @@ router.post("/register", (req, res) => {
         if(user){
             return res.status(400).json({ username: "username already exists"})
         }else{
+            let num = req.body.number
+            if(num.length === 10){
+              num = "1" + num
+            }
             const newUser = new User({
                 username: req.body.username,
                 name: req.body.name,

@@ -11,7 +11,7 @@ const keys = require("../../config/keys");
 
 let messagebird = require("messagebird")(keys.MESSAGEBIRD_API_KEY);
 
-
+const client = require('twilio')(keys.accountSid, keys.authToken)
 
 router.get("/test", (req, res) => {
   res.json({ msg: "This is the reminder route" });
@@ -99,14 +99,22 @@ router.post(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
+    console.log(req.body.dateReminder)
+    let dateTime = new Date(req.body.dateReminder)
+    dateTime.setHours(dateTime.getHours() + req.body.hourAdjustment + 5)
+    dateTime.setMinutes(dateTime.getMinutes() + 44);
+    console.log(req.body.hourAdjustment)
+    console.log(dateTime)
+    let current = new Date 
+    console.log(current)
     const newReminder = new Reminder({
       user: req.user.id,
       recipientName: req.body.recipientName,
       relationship: req.body.relationship,
-      hoursBefore: req.body.hoursBefore,
+      hourAdjustment: req.body.hourAdjustment,
       occasion: req.body.occasion,
-      date: req.body.date,
+      dateOccasion: req.body.dateOccasion,
+      dateReminder: dateTime,
       //req.body.date comes in year-month-day eg. 2021-04-20
     });
 
@@ -115,43 +123,20 @@ router.post(
       // here is where we set the messagebird message
       // set up 3 reminders
       // let message = formatReminder(reminder);
-      let reminder1DT = new Date(reminder.date);
-      let reminder2DT = new Date(reminder.date);
-      let reminder3DT = new Date(reminder.date);
-      reminder1DT.setHours(reminder1DT.getHours() - 84);
-      reminder2DT.setHours(reminder2DT.getHours() - 12);
-      reminder3DT.setHours(reminder3DT.getHours() + 10);
+      // let r = new Date(reminder.date);
+      // r.setHours(r.getHours() - req.body.hoursBefore);
       //reminder.user really gives user.id might want to change this
-      User.findById(reminder.user)
-        .then((user) => {
-          // messagebird.message.create({
-          //   originator: "DOG-HOUS",
-          //   recipients: user.number,
-          //   scheduleDatetime: reminder1DT,
-          //   body: message
-          // })
-          // messagebird.message.create({
-          //   originator: "DOG-HOUS",
-          //   recipients: user.number,
-          //   scheduleDatetime: reminder2DT,
-          //   body: message,
-          // });
-          // messagebird time is in utc
-          // messagebird.messages.create({
-          //   originator: "DOG-HOUS",
-          //   recipients: [ "12037317177" ],
-          //   // scheduledDatetime: "2020-11-18T21:56:23.000Z",
-          //   body:
-          //     "hey Erin it's your friend " + user.name,
-          // }, function(err, response){
-          //   if(err){
-          //     console.log(err)
-          //   } else{
-          //     console.log(response);
-          //   }
-          // });
-        })
-        .catch((err) => console.log(err));
+      // User.findById(reminder.user)
+      //   .then((user) => {
+      //     client.messages.create({
+      //       to: "+12032491115",
+      //       from: "",
+      //       body: `Hey there ${user.name}`,
+      //     })
+      //     .then((message) => console.log(message.sid));
+
+      //   })
+      //   .catch((err) => console.log(err));
       res.json(reminder)
     });
 
@@ -161,7 +146,15 @@ router.post(
 //patch method needed
 
 
-// router.patch("/:id", (req, res) => {
+router.put("/:id", (req, res) => {
+  Reminder.findByIdAndUpdate(req.params.id, req.body, (err, result => {
+    if(err){
+      return res.json(err)
+    }else{
+      return res.json(result)
+    }
+  }))
+})
 //   Reminder.findById(req.params.id)
 //     .then((reminder) => {
 //       return 

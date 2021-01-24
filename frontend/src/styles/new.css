@@ -7,6 +7,7 @@
     
 }
 
+
 .new-reminder-container{
     margin-left: 2%;
     width: 60vw;
@@ -29,7 +30,7 @@
 
 
 .name-input-field:focus {
-    border: 2px solid rgb(247, 155, 36);
+    border: 2px solid rgb(254, 84, 66);
     border-radius: 4px;
 }
 
@@ -62,7 +63,7 @@
 .new-reminder-submit-button{
     height: 5vh;
     width: 25vw;
-    background-color: rgb(247, 182, 99);
+    background-color: rgb(252, 114, 98);
     border-radius: 50px;
     margin-left: .5%;
     text-align: center;
@@ -71,7 +72,7 @@
 }
 
 .new-reminder-submit-button:hover{
-    background-color: rgb(252, 157, 33);
+    background-color: rgb(254, 84, 66);
     border: 2px solid black;
     cursor: pointer;
 }

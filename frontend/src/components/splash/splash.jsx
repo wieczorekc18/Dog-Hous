@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import img from "./DHlogo.jpg"
+import img from "../../styles/splashHous.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDog } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
@@ -10,12 +10,20 @@ const house = <FontAwesomeIcon icon={faHome} />;
 
 const Splash = () => (
   <div className="splash-container">
-    {/* <h1 className="splashTitle">Dog-Hous</h1> */}
-    <div className="splash">
+    <div className="splash-logo-container">
+      <img className="splash-logo" src={img} alt="asdf"/>
+    </div>
+    <div className="user-links-container">
+      <div className="user-links">
+        <Link to={"/signup"} className="subscribeLink"><h4 className="subscribeText">Subscribe Now</h4></Link>
+        <Link to={"/login"}><h4 className="loginText">Login</h4></Link>
+        <h4 className="splash-descriptors">Perfect gifts at a discounted price sent right to your phone and before you forget that special day. Never get stuck in the Doghouse again!!!</h4>
+      </div>
+    </div>
+      {/* <p>nige</p>
       <div className="splash-left">
       </div>
       <div className="splash-right">
-        {/* <img className="splash-logo" src={img} alt="asdf"/> */}
         <h1 className="login-icons">{dog} {house}</h1>
         <h2 className="splash-descriptors">Subscribe and never get stuck in the doghouse again</h2>
         <h2 className="splash-descriptors">We'll text you before you forget that special occasion</h2>
@@ -38,7 +46,7 @@ const Splash = () => (
     </div>
     <div className="Copyright">
       © 2020 A Inc Production
-    </div>
+      </div> */}
   </div>
 );
 

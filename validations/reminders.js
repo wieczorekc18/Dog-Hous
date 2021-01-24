@@ -28,8 +28,12 @@ module.exports = function validateReminder(data){
         errors.occasion = 'Reminder must have an occasion associated with it'
     }
 
-    if (Validator.isEmpty(data.date)) {
+    if (Validator.isEmpty(data.dateReminder)) {
         errors.date = 'Reminder must have a date'
+    }
+
+    if (Validator.isEmpty(data.dateOccasion)) {
+      errors.date = "Reminder must have a date";
     }
 
     return{

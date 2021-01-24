@@ -7,10 +7,12 @@ import NewReminderContainer from "../reminders/new_reminder_container"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 
 
 const star = <FontAwesomeIcon icon={faStar} />;
 const pen = <FontAwesomeIcon icon={faPen} />;
+const bell = <FontAwesomeIcon icon={faBell} />;
 
 class Profile extends React.Component {
     constructor(props){
@@ -18,7 +20,8 @@ class Profile extends React.Component {
 
         this.state = {
             reminders: [],
-            sortedReminders: {}
+            sortedReminders: {},
+            occasionReminders: {},
         }
 
         this.sortReminders = this.sortReminders.bind(this)
@@ -31,17 +34,29 @@ class Profile extends React.Component {
           debugger;
           this.setState({ reminders: res.reminders.data });
           let sorted = {};
+          let count = {};
+          let key;
           this.state.reminders.forEach((r) => {
             debugger;
             if (sorted[r.recipientName]) {
                 debugger;
                 sorted[r.recipientName].push(r);
+                key = r.recipientName + r.occasion
+                if(count[key]){
+                  count[key].push(r)
+                }else{
+                  count[key] = [r]
+                }
+                debugger
             } else {
                 debugger;
+                key = r.recipientName + r.occasion
                 sorted[r.recipientName] = [r];
+                count[key] = [r]
             }
+            debugger
           });
-          this.setState({ sortedReminders: sorted });
+          this.setState({ sortedReminders: sorted, occasionReminders: count });
         });
     }
 
@@ -150,6 +165,7 @@ class Profile extends React.Component {
                         ))} */}
                   <ul className="profile-recipient-ul">
                     {Object.keys(this.state.sortedReminders).map(
+                      
                       (recipient) => (
                         <div className="reminderContainer">
                           <li className="recipient-li">
@@ -163,7 +179,9 @@ class Profile extends React.Component {
                             </div>
                             <div className="recipient-li-icons">
                                 <Link to={`/reminders/recipient/${this.state.sortedReminders[recipient][0]._id}`}>
-                                    <span className="star-icon">{star} { this.state.sortedReminders[recipient].length}   </span>
+                                    <span className="star-icon">{Object.keys(this.state.occasionReminders).filter(key=>key.includes(recipient)).length} {star}</span>
+                                    &nbsp;&nbsp;&nbsp; 
+                                    <span className="bell-icon">{this.state.sortedReminders[recipient].length} {bell} &nbsp;&nbsp;&nbsp;</span>
                                 </Link>
                                 <Link
                                     className="link-to-existing"
@@ -173,27 +191,6 @@ class Profile extends React.Component {
                                 </Link>
                             </div>
                           </li>
-                          {this.state.sortedReminders[recipient].map(
-                            (reminder) => (
-                              <div className="reminderBox">
-                                {/* <button
-                                  className="reminder-delete-button"
-                                  onClick={() =>
-                                    this.handleDestroy(reminder._id)
-                                  }
-                                >
-                                  x
-                                </button> */}
-                                {/* <ReminderBox
-                                  key={reminder._id}
-                                  id={reminder._id}
-                                  recipientName={reminder.recipientName}
-                                  occasion={reminder.occasion}
-                                  date={reminder.date}
-                                /> */}
-                              </div>
-                            )
-                          )}
                         </div>
                       )
                     )}

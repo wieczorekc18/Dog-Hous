@@ -4,15 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../actions/session_actions";
 import { withRouter } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faDog } from "@fortawesome/free-solid-svg-icons";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
-
-const dog = <FontAwesomeIcon icon={faDog} />;
-const house = <FontAwesomeIcon icon={faHome} />;
-
-const userIcon = <FontAwesomeIcon icon={faUser} />;
+import logo from "../../ExclamWhiteBackWhiteText.png"
+import header from "../../DHnoExclamWhiteWhite.png"
 
 const mapStateToProps = (state) => {
   debugger;
@@ -63,10 +56,8 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="nav-container">
-        <h1 className="nav-dh-title">
-          {dog} {house}
-        </h1>
-        <h1 className="nav-h-title">DOG HOUS</h1>
+        <img className="profile-logo" src={logo} alt="asdf" />
+        <img className="profile-header" src={header} alt="asdf" />
         {/* <p className="nav-user-circle">{userIcon}</p> */}
         {this.getLinks()}
       </div>

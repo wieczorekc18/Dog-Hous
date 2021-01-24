@@ -10,7 +10,11 @@ class NewReminder extends React.Component {
       recipientName: "",
       relationship: "",
       occasion: "",
-      date: "",
+      dateOccasion: "",
+      dateReminder: "",
+      hour: "12",
+      ampm: "PM",
+      hourAdjustment: 12,
       setDefaultReminders: "Yes",
       errors: {},
     };
@@ -42,21 +46,27 @@ class NewReminder extends React.Component {
   handleSubmit(e) {
     debugger;
     let likes = Array.from(
-      e.target.elements[4].selectedOptions,
+      e.target.elements[7].selectedOptions,
       (option) => option.value
     );
     e.preventDefault();
-    let reminder1 = {
+    let hr = Number(this.state.hour)
+    let hrAdj;
+    this.state.ampm == "AM" ? hrAdj = 0 + hr : hrAdj = 12 + hr
+    debugger
+    let reminder = {
       recipientName: this.state.recipientName,
       relationship: this.state.relationship,
       occasion: this.state.occasion,
-      date: this.state.date,
+      dateOccasion: this.state.dateOccasion,
+      dateReminder: this.state.dateReminder,
+      hourAdjustment: hrAdj,
       likes: likes,
     };
     // here determine if mother/father
     // add reminders for christmas, mother's day ect
     this.props
-      .composeReminder(reminder1)
+      .composeReminder(reminder)
       .then((res) => {
         debugger;
         // return this.props.history.push(`/reminders/${res.reminder.data._id}`)
@@ -114,7 +124,7 @@ class NewReminder extends React.Component {
                   onChange={this.update("relationship")}
                   placeholder="What is your relationship to this person?"
                 /> */}
-            What is your relationship to this person?
+            What is this person's relationship to you?
             {
               <select
                 className="relationship-selector"
@@ -158,13 +168,53 @@ class NewReminder extends React.Component {
                   placeholder="What's the occasion you need to be reminded for?"
                 /> */}
             <br />
-            <label for="date">Date you need to be Reminded on:</label>
+            <label htmlFor="date">Date of the occasion:</label>
             <input
               className="date-picker"
               type="date"
-              value={this.state.date}
-              onChange={this.update("date")}
+              value={this.state.dateOccasion}
+              onChange={this.update("dateOccasion")}
             />
+            <br />
+            <label htmlFor="date">Date you need to be Reminded on:</label>
+            <input
+              className="date-picker"
+              type="date"
+              value={this.state.dateReminder}
+              onChange={this.update("dateReminder")}
+            />
+            <br />
+            <span>What time do you want to be reminded of this occasion: </span>
+            <select
+              className="time-selector"
+              id=""
+              onChange={this.update("hour")}
+              value={this.state.hour}
+            >
+              <option value="Must Select"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <select
+              className="am-pm-selector"
+              id=""
+              onChange={this.update("ampm")}
+              value={this.state.ampm}
+            >
+              <option value="Must Select"></option>
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
             <br />
             <div className="favorites-container">
               <label htmlFor="favorites">

@@ -17,6 +17,7 @@ import "./styles/recip_reminders.css";
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  
   let store;
 
   // If a returning user has a session token stored in localStorage

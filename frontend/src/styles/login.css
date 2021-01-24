@@ -36,7 +36,7 @@
 
 
 .login-username-field:focus {
-    border: 2px solid rgb(247, 155, 36);
+    border: 2px solid rgb(254, 84, 66);
     border-radius: 4px;
 }
 
@@ -55,14 +55,14 @@
 }
 
 .login-password-field:focus{
-    border: 2px solid rgb(247, 155, 36);
+    border: 2px solid rgb(254, 84, 66);
     border-radius: 4px;
 }
 
 .login-submit-button{
     height: 8vh;
     width: 40vw;
-    background-color: rgb(247, 182, 99);
+    background-color: rgb(250, 114, 99);
     border-radius: 50px;
     margin-bottom: 2%;
     margin-left: .5%;
@@ -71,7 +71,12 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.auth-logo{
+    height: 5%;
+    width: 5%;
+}
+
 .login-submit-button:hover{
-    background-color: rgb(252, 157, 33);
+    background-color: rgb(254, 84, 66);
     cursor: pointer;
 }

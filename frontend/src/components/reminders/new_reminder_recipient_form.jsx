@@ -9,7 +9,11 @@ class NewReminderRecipient extends React.Component {
       recipientName: "",
       relationship: "",
       occasion: "",
-      date: "",
+      dateOccasion: "",
+      dateReminder: "",
+      hour: "12",
+      ampm: "PM",
+      hourAdjustment: 12,
       errors: {},
     };
 
@@ -36,11 +40,17 @@ class NewReminderRecipient extends React.Component {
   handleSubmit(e) {
     debugger;
     e.preventDefault();
+    let hr = Number(this.state.hour);
+    this.state.ampm == "AM"
+      ? this.setState({ hourAdjustment: 0 + hr })
+      : this.setState({ hourAdjustment: 12 + hr });
     let reminder = {
       recipientName: this.state.recipientName,
       relationship: this.state.relationship,
       occasion: this.state.occasion,
-      date: this.state.date,
+      dateOccasion: this.state.dateOccasion,
+      dateReminder: this.state.dateReminder,
+      hourAdjustment: this.state.hourAdjustment,
     };
     this.props.composeReminder(reminder).then((res) => {
       debugger;
@@ -110,12 +120,53 @@ class NewReminderRecipient extends React.Component {
               </select>
             }
             <br />
+            <label for="date">Date of the occasion:</label>
+            <input
+              className="date-picker"
+              type="date"
+              value={this.state.dateOccasion}
+              onChange={this.update("dateOccasion")}
+            />
+            <br />
             <label for="date">Date you need to be Reminded on:</label>
             <input
+              className="date-picker"
               type="date"
-              value={this.state.date}
-              onChange={this.update("date")}
+              value={this.state.dateReminder}
+              onChange={this.update("dateReminder")}
             />
+            <br />
+            <span>What time do you want to be reminded of this occasion: </span>
+            <select
+              className="time-selector"
+              id=""
+              onChange={this.update("hour")}
+              value={this.state.hour}
+            >
+              <option value="Must Select"></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+            <select
+              className="am-pm-selector"
+              id=""
+              onChange={this.update("ampm")}
+              value={this.state.ampm}
+            >
+              <option value="Must Select"></option>
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
             <br />
             <input
               className="new-reminder-submit-button"

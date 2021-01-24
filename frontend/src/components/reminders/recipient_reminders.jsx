@@ -28,6 +28,7 @@ class Profile extends React.Component {
     };
 
     this.handleDestroy = this.handleDestroy.bind(this);
+    this.formatDate = this.formatDate.bind(this)
   }
 
   componentWillMount() {
@@ -47,18 +48,21 @@ class Profile extends React.Component {
             debugger 
             this.setState({reminders: res.reminders.data})
             let sorted = {};
+            let key;
             this.state.reminders.forEach((r) => {
-              debugger;
-              if (this.state.recipient == r.recipientName) {
-                if (sorted[r.recipientName]) {
-                  debugger;
-                  sorted[r.recipientName].push(r);
+              if(this.state.recipient === r.recipientName){
+                key = r.recipientName + r.occasion
+                debugger;
+                if (sorted[key]) {
+                    debugger;
+                    sorted[key].push(r);
                 } else {
-                  debugger;
-                  sorted[r.recipientName] = [r];
+                    debugger;
+                    sorted[key] = [r]
                 }
               }
             });
+
             this.setState({ sortedReminders: sorted });
         })
   }
@@ -95,6 +99,15 @@ class Profile extends React.Component {
 //     debugger;
 //   }
 
+  formatDate(date) {
+    let year = date.slice(0, 4);
+    let month = date.slice(5, 7);
+    let day = date.slice(8, 10);
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    month = months[parseInt(month) - 1]
+    return month + " " + day + ", " + year
+  }
+
   handleDestroy(id) {
     debugger;
     this.props
@@ -129,19 +142,26 @@ class Profile extends React.Component {
                     {/* {this.state.reminders.map(reminder => (
                                 <ReminderBox key={reminder._id} id={reminder._id} recipientName={reminder.recipientName} date={reminder.date}/>
                                 ))} */}
-                    {Object.keys(this.state.sortedReminders).map((recipient) => (
+                    {Object.keys(this.state.sortedReminders).map((key) => (
                         <div className="recipient-page-reminderContainer">
-                        
-                        {this.state.sortedReminders[recipient].map((reminder) => (
+                        <h2>
+                          {this.state.sortedReminders[key][0].occasion} {this.formatDate(this.state.sortedReminders[key][0].dateOccasion)}
+                        </h2>
+                        {this.state.sortedReminders[key].map((reminder) => (
                             <div className="reminder-box-container">
-                                
+                                {/* add the occasion up here reformat so 
+                                each occasion has list of reminders
+                                associated with it */}
                                 <ReminderBox
                                     key={reminder._id}
                                     id={reminder._id}
                                     recipientName={reminder.recipientName}
                                     occasion={reminder.occasion}
-                                    date={reminder.date}
+                                    date={reminder.dateReminder}
                                 />
+                                <Link to={`/reminders/addOccasion/${this.state.fetchedId}`} className="plus-sign">
+                                +
+                                </Link>
                                 <button
                                     className="reminder-delete-button"
                                     onClick={() =>

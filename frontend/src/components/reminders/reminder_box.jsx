@@ -17,6 +17,8 @@ class ReminderBox extends React.Component {
     return month + " " + day + ", " + year
   }
 
+  // go through and fix all the "date" stuff
+
   render() {
       debugger
       let date = this.formatDate(this.props.date)
@@ -24,11 +26,11 @@ class ReminderBox extends React.Component {
     return (
       
       <div className="reminder-box">
-        {/* <Link to={`/reminders/${this.props.id}`}> */}
-          <p>{this.props.occasion}: {date}</p>
+        <Link to={`/reminders/${this.props.id}`}>
+          <p>You'll be reminded of this on: {date}</p>
           <br />
           {/* <h3>{this.props.recipientName}</h3> */}
-        {/* </Link> */}
+        </Link>
       </div>
     );
   }

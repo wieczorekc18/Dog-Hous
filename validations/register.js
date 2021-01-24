@@ -31,9 +31,10 @@ module.exports = function validateRegisterInput(data) {
         errors.number = "Phone Number field is required";
     }
 
-    if(!Validator.isMobilePhone(data.number)){
-        errors.number = "Must enter a valid phone number"
+    if (!Validator.isMobilePhone(data.number) || !Validator.isLength(data.number, { min: 10, max: 11 })){
+        errors.number = "Must enter a valid phone number with no extra symbols ()- or spaces"
     }
+
 
     if(Validator.isEmpty(data.password)){
         errors.password = "Password field is required";

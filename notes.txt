@@ -12,3 +12,6 @@ each sms reminder is a reminder model that can be customized
 
 admin page can modify any reminder in dynamic way
 
+maybe add adjustments for time zones rn it's UTC(-0500) which is EST 
+
+format user input for phone number to make sure in 15556664444 format

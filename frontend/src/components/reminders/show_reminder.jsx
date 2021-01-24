@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "../nav/navbar";
 
 class ShowReminder extends React.Component {
     constructor(props){
@@ -39,16 +40,18 @@ class ShowReminder extends React.Component {
         debugger
         let id = reminder._id
         return (
-          <div>
-            <h3>
-              You made this reminder because {reminder.recipientName} your {reminder.relationship} has a {reminder.occasion} coming up
-            </h3>
-            <h4>On the Date: {reminder.date}</h4>
-            <Link to="/">Back to Home </Link>
-            {/* <button onClick={() => this.props.destroyReminder(id).then(this.props.history.push("/"))}>Delete</button> */}
-            <button onClick={() => this.handleDestroy(id)}>Delete</button>
-
-          </div>
+            <div className="show-page-container">
+                <NavBar/>
+                <div>
+                    <h3>
+                    You made this reminder because {reminder.recipientName} your {reminder.relationship} has a {reminder.occasion} coming up
+                    </h3>
+                    <h4>On the Date: {reminder.reminderOccasion}</h4>
+                    <Link to="/">Back to Home </Link>
+                    {/* <button onClick={() => this.props.destroyReminder(id).then(this.props.history.push("/"))}>Delete</button> */}
+                    <button onClick={() => this.handleDestroy(id)}>Delete</button>
+                </div>
+            </div>
         );
     }
 }
